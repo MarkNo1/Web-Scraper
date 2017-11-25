@@ -11,7 +11,7 @@ CLASS, ID, XPATH, TAG, LINK = 'class', 'id', 'xpath', 'tag', 'link'
 
 
 class Scraper():
-    def __init__(self, delay=6, log=False):
+    def __init__(self, delay=7, log=False):
         profile = webdriver.FirefoxProfile()
         profile.set_preference("browser.cache.disk.enable", False)
         profile.set_preference("browser.cache.memory.enable", False)
@@ -32,6 +32,12 @@ class Scraper():
         return dict(type=type_, name=name)
 
     def get_element_BY(self, target):
+        if isinstance(target, dict):
+            return self.get_single_element_BY(target)
+        if isinstance(target, list):
+            return self.get_multiple_element_BY(target)
+
+    def get_single_element_BY(self, target):
         element = None
         try:
             _type = target['type']
@@ -57,6 +63,12 @@ class Scraper():
                 print('{} -> {} - founded correctly!'.format(_type, _target))
             return element
 
+    def get_multiple_element_BY(self, target_list):
+        result = []
+        for target in target_list:
+            result.append(self.get_single_element_BY(target))
+        return result
+
     def __get_element_by_class(self, className):
         element = WebDriverWait(self.webBrowser, self.delay).until(
             EC.presence_of_element_located((By.CLASS_NAME, className)))
@@ -81,7 +93,7 @@ class Scraper():
         first_target = list_target[0]
         nested_target = list_target[1:]
 
-        element = self.get_element_BY(first_target)
+        element = self.get_single_element_BY(first_target)
 
         for target in nested_target:
             element = self.find_elements_BY(element, target)
@@ -100,11 +112,13 @@ class Scraper():
             _target = target['name']
 
             if _type is CLASS:
-                nested_element = self.__find_elements_by_class(element, _target)
+                nested_element = self.__find_elements_by_class(
+                    element, _target)
             if _type is ID:
                 nested_element = self.__find_elements_by_id(element, _target)
             if _type is XPATH:
-                nested_element = self.__find_elements_by_xpath(element, _target)
+                nested_element = self.__find_elements_by_xpath(
+                    element, _target)
             if _type is TAG:
                 nested_element = self.__find_elements_by_tag(element, _target)
             if _type is LINK:

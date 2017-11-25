@@ -16,9 +16,19 @@ class PluginRadio():
                 plugins.append(self.folder + '.' + plugin.replace('.py', ''))
         return plugins
 
+    def load_plugin(self, plugin):
+        return importlib.import_module(plugin, '.')
+
     def load_plugins(self):
+        self.plugins = []
         for plugin in self.list:
             self.plugins.append(self.load_plugin(plugin))
 
-    def load_plugin(self, plugin):
-        return importlib.import_module(plugin, '.')
+    def reload_plugin(self, plugin):
+        return importlib.reload(plugin)
+
+    def reload_plugins(self):
+        self.load_plugins()
+        for plugin in self.plugins:
+            self.reload_plugin(plugin)
+        print('Plugin Reloaded!')

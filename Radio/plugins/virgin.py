@@ -3,6 +3,10 @@ import re
 
 
 class Radio(RadioModel):
+    def __init__(self):
+        super().__init__()
+        self.name = 'Virgin'
+
     def urls(self):
         return dict(
             Air='http://www.virginradio.it/sezioni/1184/virgin-radio-on-air',
@@ -15,6 +19,7 @@ class Radio(RadioModel):
 
     def info_to_song(self, info):
         _song = None
+        song_record = None
         if info is not None:
             info = info.text.split('\n')
             cleaner = re.compile('[,\.!?/]')
@@ -22,10 +27,10 @@ class Radio(RadioModel):
             space = " "
             for i in range(len(info)):
                 if info[i] not in {'TITOLO:', 'ARTISTA:', 'ALBUM:', 'ANNO:'}:
-                    _song.append(cleaner.sub("", space.join(info[i].split()).title()))
-            song_record = dict()
+                    _song.append(cleaner.sub(
+                        "", space.join(info[i].split()).title()))
+            if len(_song) is 4:
+                song_record = dict(
+                    Title=_song[0], Artist=_song[1], Album=_song[2], Year=_song[3])
 
-        return _song
-
-    def name(self):
-        return 'Virgin'
+        return song_record
