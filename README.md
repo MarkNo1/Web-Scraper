@@ -4,4 +4,9 @@ Hi, everybody knows that internet is public then why not gathering data from it!
   - Virgin
   - R101
   - Globo
+  - Freccia
+  - 105
+  - Rds
+  - Kisskiss
+  
 # Subito.it
