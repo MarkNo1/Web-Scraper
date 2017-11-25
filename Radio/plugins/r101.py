@@ -44,7 +44,7 @@ class Radio(RadioModel):
                 if info[2].partition(An)[1] is An:
                     anno = info[2].partition(An + ':')[2]
                     year = clean_text(anno)
-                    if year is ' 0':
+                    if ' 0' in year:
                         _song['Year'] = 'None'
                     else:
                         _song['Year'] = year

@@ -28,6 +28,7 @@ class PluginRadio():
         return importlib.reload(plugin)
 
     def reload_plugins(self):
+        self.list = self.get_list()
         self.load_plugins()
         for plugin in self.plugins:
             self.reload_plugin(plugin)

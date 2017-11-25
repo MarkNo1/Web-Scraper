@@ -15,7 +15,7 @@ class Radio(RadioModel):
                        dict(type='xpath',
                             name='(//*[@class="white second-line"])[1]'),
                        dict(type='xpath', name='(//*[@class="gray third-line"])[1]')]
-        sleep(3)
+        sleep(4)
         return target_list
 
     def info_to_song(self, info_list):
@@ -27,6 +27,6 @@ class Radio(RadioModel):
             Title=_song[1], Artist=_song[0], Album=_song[2], Year='None')
         if song_record['Title'] is '':
             song_record = None
-        elif song_record['Title'] is 'Seconda riga':
+        elif 'Seconda riga' in song_record['Title']:
             song_record = None
         return song_record
