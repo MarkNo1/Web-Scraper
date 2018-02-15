@@ -1,11 +1,10 @@
-from subito import *
+from subito import Subito
 
-# For example
-# Copy the firt link of the result of your search
-main_url = 'https://www.subito.it/annunci-lazio/affitto/camere-posti-letto/roma/roma/?pe=500'
 
-subito = Subito(main_url, 2)
+s = Subito()
 
-subito.gathering_data()
+s.searchPage('Gtx Nvidia', 24, 0)
 
-print(subito.records)
+s.listAdPage(2)
+
+s.create_db()

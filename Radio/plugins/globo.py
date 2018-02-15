@@ -10,8 +10,7 @@ class Radio(RadioModel):
         return dict(Air='http://www.radioglobo.it/webradio-radioglobo/')
 
     def target(self):
-        return dict(type='xpath',
-                    name='(//*[@class="col-xs-12 col-sm-12 fullonaircopertina"])[2]')
+        return dict(XPATH='(//*[@class="col-xs-12 col-sm-12 fullonaircopertina"])[2]')
 
     def info_to_song(self, info):
         _song = dict()

@@ -17,8 +17,7 @@ class Radio(RadioModel):
         return dict(Air='http://www.rds.it/diretta/')
 
     def target(self):
-        return dict(type='class',
-                    name='brano_info_player_text')
+        return dict(CLASS='brano_info_player_text')
 
     def info_to_song(self, info):
         _song = None

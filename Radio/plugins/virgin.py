@@ -15,7 +15,7 @@ class Radio(RadioModel):
         )
 
     def target(self):
-        return dict(type='class', name='textual')
+        return dict(CLASS='textual')
 
     def info_to_song(self, info):
         _song = None

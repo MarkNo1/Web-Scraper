@@ -1,0 +1,4 @@
+*.pkl
+*.png
+*.log
+__pychache__/

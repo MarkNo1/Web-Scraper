@@ -11,10 +11,9 @@ class Radio(RadioModel):
         return dict(Air='http://www.radiofreccia.it/fm/')
 
     def target(self):
-        target_list = [dict(type='xpath', name='(//*[@class="white first-line"])[1]'),
-                       dict(type='xpath',
-                            name='(//*[@class="white second-line"])[1]'),
-                       dict(type='xpath', name='(//*[@class="gray third-line"])[1]')]
+        target_list = [dict(XPATH='(//*[@class="white first-line"])[1]'),
+                       dict(XPATH='(//*[@class="white second-line"])[1]'),
+                       dict(XPATH='(//*[@class="gray third-line"])[1]')]
         sleep(4)
         return target_list
 

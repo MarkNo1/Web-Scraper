@@ -20,7 +20,7 @@ class Radio(RadioModel):
         )
 
     def target(self):
-        return dict(type='class', name='playonair')
+        return dict(CLASS='playonair')
 
     def info_to_song(self, info):
         _song = None

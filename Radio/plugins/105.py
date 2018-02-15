@@ -16,8 +16,7 @@ class Radio(RadioModel):
         return dict(Air='http://www.105.net/sezioni/733/radio-105-diretta')
 
     def target(self):
-        return dict(type='class',
-                    name='textual')
+        return dict(CLASS='textual')
 
     def info_to_song(self, info):
         _song = None
